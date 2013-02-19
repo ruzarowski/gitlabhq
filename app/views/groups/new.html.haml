@@ -9,8 +9,18 @@
       Group name is
     .input
       = f.text_field :name, placeholder: "Ex. OpenSource", class: "xxlarge left"
-      &nbsp;
-      = f.submit 'Create group', class: "btn btn-create"
+
+  %hr
+  
+  .clearfix
+    = f.label :shared, "Shared group (available for other people's projects)"
+    .input= f.check_box :shared
+
+  %hr
+
+  .actions
+    = f.submit 'Create group', class: "btn btn-create"
+
   %hr
   .padded
     %ul

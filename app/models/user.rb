@@ -251,7 +251,7 @@ class User < ActiveRecord::Base
   end
 
   def can_select_namespace?
-    several_namespaces? || admin
+    several_namespaces? || shared_namespaces? || admin
   end
 
   def can? action, subject
@@ -297,6 +297,10 @@ class User < ActiveRecord::Base
 
   def several_namespaces?
     namespaces.size > 1
+  end
+
+  def shared_namespaces?
+    Group.where("type = 'Group' AND shared = 1").size > 0
   end
 
   def namespace_id

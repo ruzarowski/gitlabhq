@@ -12,7 +12,7 @@
 #
 
 class Namespace < ActiveRecord::Base
-  attr_accessible :name, :path
+  attr_accessible :name, :path, :shared
 
   has_many :projects, dependent: :destroy
   belongs_to :owner, class_name: "User"

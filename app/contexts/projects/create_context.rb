@@ -55,7 +55,7 @@ module Projects
         return user.admin
       else
         namespace = Namespace.find_by_id(namespace_id)
-        current_user.can?(:manage_namespace, namespace)
+        current_user.can?(:manage_namespace, namespace) || (namespace.type == "Group" and namespace.shared == 1)
       end
     end
   end

@@ -5,12 +5,13 @@ module NamespacesHelper
       users = Namespace.root
     else
       groups = current_user.owned_groups.select {|n| n.type == 'Group'}
+      groups += Group.where('type = "Group" AND shared=1')
       users = current_user.namespaces.reject {|n| n.type == 'Group'}
     end
 
 
     global_opts = ["Global", [['/', Namespace.global_id]] ]
-    group_opts = ["Groups", groups.map {|g| [g.human_name, g.id]} ]
+    group_opts = ["Groups", groups.uniq.map {|g| [g.human_name, g.id]} ]
     users_opts = [ "Users", users.map {|u| [u.human_name, u.id]} ]
 
     options = []

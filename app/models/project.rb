@@ -225,7 +225,7 @@ class Project < ActiveRecord::Base
   end
 
   def owner
-    if namespace
+    if namespace and namespace.shared == 0
       namespace_owner
     else
       creator
