@@ -15,7 +15,9 @@ module Projects
         elsif namespace_id.to_i != project.namespace_id
           # Transfer to someone namespace
           namespace = Namespace.find(namespace_id)
-          project.transfer(namespace)
+          if current_user.admin || current_user.can?(:manage_namespace, namespace) || namespace.shared
+            project.transfer(namespace)
+          end
         end
       end
 
