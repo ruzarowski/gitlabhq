@@ -124,7 +124,7 @@ module Gitlab
       end
     end
 
-    EMOJI_PATTERN = %r{(:(\S+):)}.freeze
+    EMOJI_PATTERN = %r{(::(\S+)::)}.freeze
 
     def parse_emoji(text)
       # parse emoji
