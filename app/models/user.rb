@@ -198,6 +198,8 @@ class User < ActiveRecord::Base
     Project.where(id: project_ids)
   end
 
+
+
   # Projects in user namespace
   def personal_projects
     Project.personal(self)
@@ -293,6 +295,10 @@ class User < ActiveRecord::Base
 
   def projects_sorted_by_activity
     authorized_projects.sorted_by_activity
+  end
+
+  def projects_sorted_by_name
+    authorized_projects.sort_by { |p| [p.name] }
   end
 
   def several_namespaces?

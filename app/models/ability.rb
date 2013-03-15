@@ -39,6 +39,8 @@ class Ability
 
       elsif team.guests.include?(user)
         rules << project_guest_rules
+      elsif group.shared == 1
+        rules << project_guest_rules
       end
 
       if project.owner == user

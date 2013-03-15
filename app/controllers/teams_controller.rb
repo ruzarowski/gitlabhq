@@ -67,7 +67,7 @@ class TeamsController < ApplicationController
   protected
 
   def projects
-    @projects ||= user_team.projects.sorted_by_activity
+    @projects ||= user_team.projects.sort_by(&:name)
   end
 
   def user_team
