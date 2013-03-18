@@ -10,7 +10,7 @@
           New Project
 
   %ul.well-list
-    - projects.sort_by{ |p| [p.namespace.human_name,p.name] }.each do |project|
+    - projects.sort_by{ |p| [p.namespace ? p.namespace.human_name : '',p.name] }.each do |project|
       %li
         = link_to project_path(project), class: dom_class(project) do
           - if project.namespace
